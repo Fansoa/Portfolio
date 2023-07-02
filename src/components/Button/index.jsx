@@ -1,8 +1,8 @@
 import { ButtonContainer } from "./styled";
 import PropTypes from 'prop-types'
 
-const Button = ({className, variantType}) => {
-  return <ButtonContainer className={className} variantType={variantType}>Toto</ButtonContainer>;
+const Button = ({className, variantType, label}) => {
+  return <ButtonContainer className={className} variantType={variantType}>{label}</ButtonContainer>;
 };
 
 Button.propTypes = {
@@ -11,6 +11,10 @@ Button.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Optional label
+   */
+  label: PropTypes.string,
+  /**
    * Optional variantType
    */
   variantType: PropTypes.oneOf(['fill', 'stroke']),
@@ -18,6 +22,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   className: null,
+  label: null,
   variantType: 'fill',
 }
 
