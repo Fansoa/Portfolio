@@ -6,9 +6,9 @@ import IntegrationProvider from "../../../../configs/jest/testUtils";
 test("test Button", async () => {
   const result = render(
     <IntegrationProvider>
-      <Button />
+      <Button label="Label" />
     </IntegrationProvider>
   );
   expect(result).toMatchSnapshot();
-  screen.getByText("Toto");
+  screen.getByText("Label");
 });
