@@ -1,5 +1,5 @@
-import { Global, ThemeProvider } from '@emotion/react';
-import theme from '../src/theme';
+import { ThemeProvider } from '@emotion/react';
+import theme from '../../src/theme';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 
 /** @type { import('@storybook/react').Preview } */
