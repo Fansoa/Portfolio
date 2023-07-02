@@ -19,7 +19,7 @@ exports[`test Button 1`] = `
       <button
         class="emotion-0"
       >
-        Toto
+        Label
       </button>
     </div>
   </body>,
@@ -38,7 +38,7 @@ exports[`test Button 1`] = `
     <button
       class="emotion-0"
     >
-      Toto
+      Label
     </button>
   </div>,
   "debug": [Function],
