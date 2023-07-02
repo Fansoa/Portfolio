@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
-import theme from "../../theme";
+import theme from "../../src/theme";
 import PropTypes from "prop-types";
 
 const IntegrationProvider = ({ children }) => {
