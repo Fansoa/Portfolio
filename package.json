@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006 -c configs/storybook",
     "build-storybook": "storybook build -c configs/storybook",
-    "test": "jest -c configs/jest/jest.config.mjs"
+    "test": "jest -c configs/jest/jest.config.mjs",
+    "test-watch": "jest -c configs/jest/jest.config.mjs --watch"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
