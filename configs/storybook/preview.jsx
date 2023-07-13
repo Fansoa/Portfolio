@@ -1,6 +1,8 @@
 import { ThemeProvider } from '@emotion/react';
 import theme from '../../src/theme';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
+import { Global } from '@emotion/react';
+import { globalStyles } from '../../src/utils/sharedStyles/globalStyles';
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -13,7 +15,6 @@ const preview = {
       },
     },
   },
-  
 };
 
 export const decorators = [
@@ -23,6 +24,7 @@ export const decorators = [
     },
     defaultTheme: 'default',
     Provider: ThemeProvider,
+    GlobalStyles: () => <Global styles={globalStyles} />
   }),
 ]
 
