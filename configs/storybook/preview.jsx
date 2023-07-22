@@ -4,6 +4,8 @@ import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 import { Global } from '@emotion/react';
 import { globalStyles } from '../../src/utils/sharedStyles/globalStyles';
 
+import "../../src/normalize.css";
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
