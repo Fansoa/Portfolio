@@ -1,7 +1,7 @@
 import LabelCheckbox from ".";
 
 export default {
-  title: "Components/Inputs/LabelCheckbox",
+  title: "Inputs/LabelCheckbox",
   component: LabelCheckbox,
   args: {
     label: "Label",

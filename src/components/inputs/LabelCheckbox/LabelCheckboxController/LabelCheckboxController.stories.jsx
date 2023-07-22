@@ -16,7 +16,7 @@ const ControlProvider = () => {
 };
 
 export default {
-  title: "Components/Inputs/LabelCheckbox",
+  title: "Inputs/LabelCheckbox",
   component: LabelCheckboxController,
   args: {
     name: "inputName",
