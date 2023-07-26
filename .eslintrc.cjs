@@ -10,6 +10,7 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
     "plugin:storybook/recommended",
+    "prettier",
   ],
   parserOptions: {
     ecmaVersion: "latest",
@@ -20,8 +21,9 @@ module.exports = {
       version: "18.2",
     },
   },
-  plugins: ["react-refresh"],
+  plugins: ["react-refresh", "prettier"],
   rules: {
+    "prettier/prettier": "error",
     "react-refresh/only-export-components": "warn",
   },
 };
