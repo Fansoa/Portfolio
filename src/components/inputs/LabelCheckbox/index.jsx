@@ -1,23 +1,28 @@
-import PropTypes from 'prop-types'
-import { Checkbox, CustomCheckbox, LabelCheckboxCheckIcon, LabelCheckboxContainer, LabelCheckboxLabel } from './styled'
+import PropTypes from "prop-types";
+import {
+  Checkbox,
+  CustomCheckbox,
+  LabelCheckboxCheckIcon,
+  LabelCheckboxContainer,
+  LabelCheckboxLabel,
+} from "./styled";
 
-const LabelCheckbox = ({className, label, name, value, onChange}) => {
-
+const LabelCheckbox = ({ className, label, name, value, onChange }) => {
   return (
     <LabelCheckboxContainer className={className}>
-        <CustomCheckbox onClick={() => onChange(!value)}>
-          { value && <LabelCheckboxCheckIcon/>}
-        </CustomCheckbox>
+      <CustomCheckbox onClick={() => onChange(!value)}>
+        {value && <LabelCheckboxCheckIcon />}
+      </CustomCheckbox>
       <LabelCheckboxLabel htmlFor={name}>{label}</LabelCheckboxLabel>
       <Checkbox
-        type='checkbox'
+        type="checkbox"
         checked={value}
-        onChange={e => onChange(e.target.checked)}
+        onChange={(e) => onChange(e.target.checked)}
         hidden
       />
     </LabelCheckboxContainer>
-  )
-}
+  );
+};
 
 LabelCheckbox.propTypes = {
   /**
@@ -40,11 +45,11 @@ LabelCheckbox.propTypes = {
    * Required onChange
    */
   onChange: PropTypes.func.isRequired,
-}
+};
 
 LabelCheckbox.defaultProps = {
   className: null,
   label: null,
-}
+};
 
-export default LabelCheckbox
+export default LabelCheckbox;

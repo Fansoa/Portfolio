@@ -12,7 +12,10 @@ const CheckIcon = ({ className, fillColor }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M6.5 13L2 8.47826L6.5 10.2174L14 5L6.5 13Z" fill={fillColor || theme.colors.green}/>
+      <path
+        d="M6.5 13L2 8.47826L6.5 10.2174L14 5L6.5 13Z"
+        fill={fillColor || theme.colors.green}
+      />
     </svg>
   );
 };

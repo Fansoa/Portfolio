@@ -10,9 +10,15 @@ const LabelCheckboxController = ({ name, ...props }) => {
       control={control}
       name={name}
       render={({ field: { onChange, value } }) => {
-          return <LabelCheckbox value={value} name={name} onChange={onChange} {...props} />
-        }
-      }
+        return (
+          <LabelCheckbox
+            value={value}
+            name={name}
+            onChange={onChange}
+            {...props}
+          />
+        );
+      }}
     />
   );
 };
@@ -24,4 +30,4 @@ LabelCheckboxController.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-export default LabelCheckboxController
+export default LabelCheckboxController;

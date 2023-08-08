@@ -10,7 +10,7 @@ test("test Button", async () => {
   const { container } = render(
     <IntegrationProvider>
       <Button label="Label" onClick={mockOnClick} />
-    </IntegrationProvider>
+    </IntegrationProvider>,
   );
   const component = screen.getByText(/label/i);
   fireEvent.click(component);
