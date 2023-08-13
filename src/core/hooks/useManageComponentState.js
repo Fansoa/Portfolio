@@ -5,7 +5,7 @@ const useManageComponentState = (inputFieldValue) => {
   const [isFocus, setIsFocus] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [isFilled, setIsFilled] = useState(
-    !!inputFieldValue || inputFieldValue === 0,
+    !inputFieldValue || inputFieldValue === 0,
   );
 
   const handleOnBlur = (e) => {
