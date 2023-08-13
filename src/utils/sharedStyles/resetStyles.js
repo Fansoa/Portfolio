@@ -8,4 +8,7 @@ export const resetStyles = {
   input: {
     all: "unset",
   },
+  p: {
+    margin: "0",
+  },
 };
