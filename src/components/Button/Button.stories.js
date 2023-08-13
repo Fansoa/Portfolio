@@ -7,6 +7,7 @@ export default {
   args: {
     label: "Bouton",
     variantType: "fill",
+    isDisable: false,
   },
   argTypes: {
     className: {
@@ -21,4 +22,6 @@ export default {
   },
 };
 
-export const Default = {};
+export const ButtonStory = {
+  name: "Button",
+};

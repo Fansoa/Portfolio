@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Button from "..";
 import IntegrationProvider from "../../../../configs/jest/testUtils";
-import { noop } from "../../../utils/methods/noop";
+import { noop } from "../../../core/methods/noop";
 
 const mockOnClick = jest.fn(noop);
 
