@@ -12,7 +12,7 @@ export const global = {
     blurple: "#5865F2",
     green: "#57F2B7",
     yellow: "#FEE25C",
-    fuchsia: "#5865F2",
+    fuchsia: "#EE459E",
     red: "#ED4245",
 
     webdriverIoOrange: "#EA5906",
