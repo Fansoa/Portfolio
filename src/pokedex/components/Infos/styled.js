@@ -11,6 +11,7 @@ export const InfosContainer = styled.div`
     background: ${theme.pokedex.colors.white};
     border-radius: 20px;
     gap: 34px;
+    box-shadow: 0px 2px 4px 0px ${theme.pokedex.colors.veryLightGray}; 
   `}
 `;
 
