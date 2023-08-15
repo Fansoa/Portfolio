@@ -1,4 +1,3 @@
-import { useState } from "react";
 import image from "../../../../assets/pokeball.png";
 import TextFieldController from "../../../../components/TextField/controler";
 import SearchButton from "../../../../components/SearchButton";
