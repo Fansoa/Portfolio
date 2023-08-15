@@ -44,6 +44,7 @@ export const global = {
       lightGray: "#C4C4C4", // backgroundColor stats
       veryLightGray: "#DEDEDE", // borderColor caseStats
       darkGray: "#8f8f8fde", // fontColor form 87% opac
+      mirage: "#141a2b",
       white: "#FFFFFF",
       whiteSmoke: "#F5F5F5", // backgroundColor TextField
     },
