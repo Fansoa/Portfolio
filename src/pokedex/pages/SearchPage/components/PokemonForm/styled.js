@@ -9,7 +9,7 @@ export const PokemonFormContainer = styled.div`
   border-radius: 20px;
   padding: 69px 61px 69px 61px;
   background: rgba(255, 255, 255, 0.8);
-  gap: 28px;
+  justify-content: space-between;
   align-items: center;
 `;
 
