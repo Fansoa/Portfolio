@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { SearchButtonContainer as Container } from "./styled";
+import { RandomButtonContainer as Container } from "./styled";
 import RandomIcon from "./components/RandomIcon";
 import { noop } from "../../../core/methods/noop";
 
