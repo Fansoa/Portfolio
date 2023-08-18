@@ -6,7 +6,6 @@ export const InfosContainer = styled.div`
   display: flex;
   flex-direction: column;
     width: 290px;
-    height: 265px;
     padding: 16px 28px 15px 17px;
     background: ${theme.pokedex.colors.white};
     border-radius: 20px;
