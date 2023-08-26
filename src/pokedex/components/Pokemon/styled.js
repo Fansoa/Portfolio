@@ -7,11 +7,11 @@ export const PokemonImgContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  height: 150px;
 `;
 
 export const PokemonPokemonImg = styled.img`
-  width: 150px;
-  height: 150px;
+  height: 100%;
 `;
 
 export const PokemonPokeballImg = styled.img`
