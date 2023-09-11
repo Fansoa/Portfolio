@@ -1,14 +1,17 @@
 import PropTypes from "prop-types";
 import {
   PokemonIllustrationContainer as Container,
-  PokemonIllustrationImage,
+  PokemonIllustrationImage as Image,
+  PokemonIllustrationImageContainer as ImageContainer,
 } from "./styled";
 import Types from "../Types";
 
 const PokemonIllustration = ({ className, elementTypes, imgUrl }) => {
   return (
     <Container className={className}>
-      <PokemonIllustrationImage src={imgUrl} />
+      <ImageContainer>
+        <Image src={imgUrl} />
+      </ImageContainer>
       <Types elementTypes={elementTypes} />
     </Container>
   );
