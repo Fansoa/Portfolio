@@ -1,23 +1,12 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { pokemonFormSchema } from "./yupSchema";
-import Pokedex from "pokedex-promise-v2";
 import { getRandomInt } from "./methods";
-
-const P = new Pokedex();
+import { useNavigate } from "react-router-dom";
 
 const usePokemonForm = () => {
-  const [pokemon, setPokemon] = useState(null);
-  const [pokemonSpecies, setPokemonSpecies] = useState(null);
-  const [id, setId] = useState(null);
-  const [name, setName] = useState(null);
-  const [stats, setStats] = useState(null);
-  const [infos, setInfos] = useState(null);
-  const [types, setTypes] = useState(null);
-  const [pokemonImage, setPokemonImage] = useState(null);
-
+  const navigate = useNavigate();
   const methods = useForm({
     defaultValues: {
       pokemonName: "",
@@ -27,46 +16,14 @@ const usePokemonForm = () => {
   });
   const { handleSubmit } = methods;
 
-  useEffect(() => {
-    setId(pokemon?.id);
-
-    setName(pokemon?.name);
-
-    setStats({
-      hp: pokemon?.stats[0]?.base_stat,
-      attack: pokemon?.stats[1]?.base_stat,
-      defense: pokemon?.stats[2]?.base_stat,
-      speA: pokemon?.stats[3]?.base_stat,
-      speD: pokemon?.stats[4]?.base_stat,
-      speed: pokemon?.stats[5]?.base_stat,
-    });
-
-    setTypes(
-      pokemon?.types.reduce((acc, curr) => {
-        return [...acc, curr.type.name];
-      }, []),
-    );
-
-    setPokemonImage(
-      pokemon?.sprites?.other?.["official-artwork"]?.front_default,
-    );
-  }, [pokemon]);
-
-  useEffect(() => {
-    setInfos({
-      weight: pokemon?.weight,
-      height: pokemon?.height,
-      abilities: pokemon?.abilities.reduce((acc, curr) => {
-        return [...acc, curr.ability.name];
-      }, []),
-      description: pokemonSpecies?.flavor_text_entries[0]?.flavor_text,
-    });
-  }, [pokemon, pokemonSpecies]);
-
   const onSubmit = async (formValues) => {
     const { pokemonName, random } = formValues;
-
+    let pokemon;
+    let pokemonSpecies;
+    let evolutionChain;
+    let evolution;
     let dataToSendToApi;
+
     if (random) {
       dataToSendToApi = await axios
         .get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=2000")
@@ -77,25 +34,96 @@ const usePokemonForm = () => {
           return pokemonList[getRandomInt(pokemonListLength)].name;
         });
     } else {
-      dataToSendToApi = pokemonName;
+      dataToSendToApi = pokemonName.toLowerCase();
     }
 
     try {
-      const pokemon = await P.getPokemonByName(dataToSendToApi);
-      setPokemon(pokemon);
+      pokemon = await axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${dataToSendToApi}`)
+        .then((response) => response.data);
     } catch (error) {
       console.error(error);
     }
 
     try {
-      const pokemonSpecies = await P.getPokemonSpeciesByName(dataToSendToApi);
-      setPokemonSpecies(pokemonSpecies);
+      pokemonSpecies = await axios
+        .get(pokemon.species.url)
+        .then((response) => response.data);
     } catch (error) {
       console.error(error);
+    }
+
+    try {
+      evolutionChain = await axios
+        .get(pokemonSpecies.evolution_chain.url)
+        .then((response) => response.data.chain);
+
+      const getPokemonNameEvolution = (data, tableau) => {
+        if (!tableau) {
+          tableau = [];
+          tableau.push(evolutionChain.species.name);
+        }
+        if (data.evolves_to && data.evolves_to.length) {
+          tableau.push(data.evolves_to[0].species.name);
+          getPokemonNameEvolution(data.evolves_to[0], tableau);
+        }
+        return tableau;
+      };
+
+      const pokemonEvolutionName = getPokemonNameEvolution(evolutionChain);
+
+      const popo = pokemonEvolutionName.map(async (pokemonName) => {
+        return await axios
+          .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+          .then(({ data }) => ({
+            id: data.id,
+            name: pokemonName,
+            imgUrl: data.sprites.other["official-artwork"].front_default,
+          }));
+      });
+
+      evolution = await Promise.all(popo);
+    } catch (error) {
+      console.error(error);
+    }
+
+    go({
+      id: pokemon?.id,
+      name: pokemon?.name,
+      stats: {
+        hp: (pokemon?.stats[0]?.base_stat / 255) * 15,
+        attack: (pokemon?.stats[1]?.base_stat / 255) * 15,
+        defense: (pokemon?.stats[2]?.base_stat / 255) * 15,
+        speA: (pokemon?.stats[3]?.base_stat / 255) * 15,
+        speD: (pokemon?.stats[4]?.base_stat / 255) * 15,
+        speed: (pokemon?.stats[5]?.base_stat / 255) * 15,
+      },
+      infos: {
+        weight: `${pokemon?.weight / 10} kg`,
+        height: `${pokemon?.height / 10} m`,
+        abilities: pokemon?.abilities
+          .reduce((acc, curr) => {
+            return [...acc, curr.ability.name];
+          }, [])
+          .join(", "),
+        description: pokemonSpecies?.flavor_text_entries[0]?.flavor_text,
+      },
+      types: pokemon?.types.reduce((acc, curr) => {
+        return [...acc, curr.type.name];
+      }, []),
+      pokemonImage:
+        pokemon?.sprites?.other?.["official-artwork"]?.front_default,
+      evolution,
+    });
+  };
+
+  const go = (data) => {
+    if (data) {
+      navigate(`/pokedex/${data.id}`, { state: data });
     }
   };
+
   return {
-    data: { id, name, stats, infos, types, pokemonImage },
     methods,
     onSubmit: handleSubmit(onSubmit),
   };

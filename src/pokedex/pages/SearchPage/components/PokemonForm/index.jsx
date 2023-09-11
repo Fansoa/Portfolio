@@ -9,9 +9,9 @@ import {
 } from "./styled";
 import { FormProvider } from "react-hook-form";
 import usePokemonForm from "./hooks/usePokemonForm";
-const PokemonForm = () => {
-  const { methods, onSubmit, data } = usePokemonForm();
 
+const PokemonForm = () => {
+  const { methods, onSubmit } = usePokemonForm();
   return (
     <Container>
       <FormProvider {...methods}>
