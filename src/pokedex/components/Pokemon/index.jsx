@@ -16,7 +16,7 @@ const Pokemon = ({ className, imgUrl, id, name }) => {
         <PokemonImg src={imgUrl} />
         <PokeballImg src={pokeball} />
       </ImgContainer>
-      <Id>{id}</Id>
+      <Id>#{id}</Id>
       <Name>{name}</Name>
     </Container>
   );
@@ -34,7 +34,7 @@ Pokemon.propTypes = {
   /**
    * Optional id
    */
-  id: PropTypes.string,
+  id: PropTypes.number,
   /**
    * Optional name
    */

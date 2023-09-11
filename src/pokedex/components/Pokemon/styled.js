@@ -12,6 +12,7 @@ export const PokemonImgContainer = styled.div`
 
 export const PokemonPokemonImg = styled.img`
   height: 100%;
+  z-index: 1;
 `;
 
 export const PokemonPokeballImg = styled.img`
@@ -19,7 +20,6 @@ export const PokemonPokeballImg = styled.img`
   height: 100px;
   position: absolute;
   opacity: 0.5;
-  z-index: -2;
 `;
 
 export const PokemonId = styled.p`
@@ -39,5 +39,6 @@ export const PokemonName = styled.p`
     font-family: Roboto;
     font-size: 24px;
     font-weight: 700;
+    text-transform: capitalize;
   `}
 `;
